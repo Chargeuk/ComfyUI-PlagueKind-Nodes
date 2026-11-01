@@ -61,6 +61,10 @@ def _load_extension_package(pkg_dir_name):
 
 
 for pkg_dir_name in EXTENSION_PACKAGES:
+    # The standalone MMH3 fork owns these node IDs. Keep this entry in the
+    # package list so the generic walker also skips the bundled LD directory.
+    if pkg_dir_name == "ComfyUI-H3-UltimateUpscale-LD":
+        continue
     _load_extension_package(pkg_dir_name)
 
 _extension_dirs = {os.path.join(current_dir, p) for p in EXTENSION_PACKAGES}
